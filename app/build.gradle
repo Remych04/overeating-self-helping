@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.0"
 
     defaultConfig {
-        applicationId "com.remych04.overeating.self.overeating.self.helping"
+        applicationId "com.remych04.overeating.self.helping"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -34,6 +34,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    implementation 'ru.terrakok.cicerone:cicerone:5.1.0'
 
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
