@@ -1,6 +1,7 @@
 package com.remych04.overeating.self.helping
 
 import android.app.Application
+import com.remych04.overeating.self.helping.feature.daylist.module.dayListModule
 import com.remych04.overeating.self.helping.modules.NavigationComponentModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -18,7 +19,7 @@ class MainApplication : Application() {
             androidLogger()
             androidContext(this@MainApplication)
             androidFileProperties()
-            modules(navigationModule.getModule())
+            modules(navigationModule.getModule(), dayListModule)
         }
     }
 }

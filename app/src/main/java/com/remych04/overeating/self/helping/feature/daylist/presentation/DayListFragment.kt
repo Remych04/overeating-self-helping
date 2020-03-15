@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.databinding.DaymeallistFragmentBinding
-import com.remych04.overeating.self.helping.feature.daylist.data.MealDto
 import com.remych04.overeating.self.helping.feature.daylist.presentation.adapter.MealListAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DayListFragment : Fragment() {
 
     private var _binding: DaymeallistFragmentBinding? = null
     private val binding get() = _binding!!
+    private val model by viewModel<DayListViewModel>()
+    private lateinit var adapter: MealListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,15 +31,21 @@ class DayListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).title = "Здарова"
-        val adapter = MealListAdapter()
-        binding.mealList.layoutManager = LinearLayoutManager(context)
-        binding.mealList.adapter = adapter
-        adapter.setList(listOf(MealDto("ПОНЧИКИ"), MealDto("ВАРЕНИКИ")))
+        initAdapter()
+        model.getData().observe(viewLifecycleOwner, Observer {
+            adapter.setList(it)
+        })
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    private fun initAdapter() {
+        adapter = MealListAdapter()
+        binding.mealList.layoutManager = LinearLayoutManager(context)
+        binding.mealList.adapter = adapter
     }
 
     companion object {
