@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.remych04.overeating.self.helping.databinding.MealItemBinding
-import com.remych04.overeating.self.helping.feature.daylist.data.MealDto
+import com.remych04.overeating.self.helping.data.MealDto
 
 class MealListAdapter() : RecyclerView.Adapter<MealViewHolder>() {
 

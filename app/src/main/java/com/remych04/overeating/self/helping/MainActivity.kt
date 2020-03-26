@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        navigator.applyCommands(arrayOf<Command>(Replace(Screens.DayListFragmentScreen())))
+        if (savedInstanceState == null) {
+            navigator.applyCommands(arrayOf<Command>(Replace(Screens.DayListFragmentScreen())))
+        }
     }
 
     override fun onResumeFragments() {

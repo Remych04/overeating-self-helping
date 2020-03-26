@@ -8,7 +8,8 @@ import androidx.room.Query
 interface MealDao {
 
     @Query("SELECT * FROM $tableName")
+    suspend fun getAllMeals(): MealEntity
 
     @Insert
-    fun insert(mealEntity: MealEntity)
+    suspend fun insertMeal(mealEntity: MealEntity)
 }

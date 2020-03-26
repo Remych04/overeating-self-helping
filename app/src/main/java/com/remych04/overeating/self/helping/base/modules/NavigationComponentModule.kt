@@ -1,4 +1,4 @@
-package com.remych04.overeating.self.helping.modules
+package com.remych04.overeating.self.helping.base.modules
 
 import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone

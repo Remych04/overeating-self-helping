@@ -1,4 +1,4 @@
-package com.remych04.overeating.self.helping.modules
+package com.remych04.overeating.self.helping.base.modules
 
 import android.app.Application
 import androidx.room.Room
@@ -6,7 +6,7 @@ import com.remych04.overeating.self.helping.base.db.DataBase
 import com.remych04.overeating.self.helping.base.db.MealDao
 import org.koin.dsl.module
 
-class DataBaseModule(private val application: Application) {
+class DataBaseModule(application: Application) {
 
     private val dbBuilder = Room.databaseBuilder(
         application, DataBase::class.java, "mealDb"

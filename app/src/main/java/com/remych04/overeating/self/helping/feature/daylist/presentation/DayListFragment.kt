@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.databinding.DaymeallistFragmentBinding
 import com.remych04.overeating.self.helping.feature.daylist.presentation.adapter.MealListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,8 +31,11 @@ class DayListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).title = "Здарова"
         initAdapter()
+        binding.addMealButton.setOnClickListener {
+            model.addMealClick()
+        }
         model.getData().observe(viewLifecycleOwner, Observer {
-            adapter.setList(it)
+//            adapter.setList(it)
         })
     }
 
@@ -43,9 +45,9 @@ class DayListFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = MealListAdapter()
-        binding.mealList.layoutManager = LinearLayoutManager(context)
-        binding.mealList.adapter = adapter
+//        adapter = MealListAdapter()
+//        binding.mealList.layoutManager = LinearLayoutManager(context)
+//        binding.mealList.adapter = adapter
     }
 
     companion object {

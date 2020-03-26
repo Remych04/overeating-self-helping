@@ -2,7 +2,7 @@ package com.remych04.overeating.self.helping.feature.daylist.presentation.adapte
 
 import androidx.recyclerview.widget.RecyclerView
 import com.remych04.overeating.self.helping.databinding.MealItemBinding
-import com.remych04.overeating.self.helping.feature.daylist.data.MealDto
+import com.remych04.overeating.self.helping.data.MealDto
 
 class MealViewHolder(private val view: MealItemBinding) : RecyclerView.ViewHolder(view.root) {
 
