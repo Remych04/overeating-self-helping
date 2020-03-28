@@ -15,7 +15,7 @@ class NewMealViewModel(
     private val currentTime: Calendar = Calendar.getInstance()
 
     fun addNewMeal(mealDto: MealDto) {
-        val mealEntity: MealEntity = MealEntity(
+        val mealEntity = MealEntity(
             meal = mealDto.meal,
             feelings = mealDto.feelings,
             date = currentTime.timeInMillis,

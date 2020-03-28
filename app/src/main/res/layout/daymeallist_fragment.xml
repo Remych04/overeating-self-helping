@@ -6,13 +6,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addMealButton"
-        android:text="ADD NEW"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="ADD NEW" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mealList"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshMealList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mealList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

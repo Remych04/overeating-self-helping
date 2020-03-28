@@ -3,12 +3,12 @@ package com.remych04.overeating.self.helping.feature.daylist.presentation.adapte
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.remych04.overeating.self.helping.databinding.MealItemBinding
 import com.remych04.overeating.self.helping.data.MealDto
+import com.remych04.overeating.self.helping.databinding.MealItemBinding
 
 class MealListAdapter() : RecyclerView.Adapter<MealViewHolder>() {
 
-    private lateinit var mealList: List<MealDto>
+    private var mealList: List<MealDto>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -17,10 +17,12 @@ class MealListAdapter() : RecyclerView.Adapter<MealViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
-        holder.bind(mealList[position])
+        mealList?.let {
+            holder.bind(it[position])
+        }
     }
 
-    override fun getItemCount() = mealList.size
+    override fun getItemCount() = mealList?.size ?: 0
 
     fun setList(list: List<MealDto>) {
         mealList = list

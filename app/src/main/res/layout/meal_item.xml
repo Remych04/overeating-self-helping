@@ -6,16 +6,38 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
         app:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_light" />
+            android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mealItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/feelItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/isUnnecessaryItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/isReplacementItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

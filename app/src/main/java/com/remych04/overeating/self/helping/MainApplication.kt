@@ -6,6 +6,7 @@ import com.facebook.flipper.android.utils.FlipperUtils
 import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
+import com.facebook.flipper.plugins.navigation.NavigationFlipperPlugin
 import com.facebook.soloader.SoLoader
 import com.remych04.overeating.self.helping.base.modules.DataBaseModule
 import com.remych04.overeating.self.helping.base.modules.NavigationComponentModule
@@ -44,8 +45,11 @@ class MainApplication : Application() {
     private fun initFlipper() {
         SoLoader.init(this, false)
         if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
+            val descriptorMapping = DescriptorMapping.withDefaults()
             val client = AndroidFlipperClient.getInstance(this)
-            client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
+            client.addPlugin(InspectorFlipperPlugin(this, descriptorMapping))
+            client.addPlugin(InspectorFlipperPlugin(this, descriptorMapping))
+            client.addPlugin(NavigationFlipperPlugin.getInstance());
             client.addPlugin(DatabasesFlipperPlugin(this));
             client.start()
         }
