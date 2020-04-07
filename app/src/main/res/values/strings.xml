@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Overeating-self-helping</string>
+
+    <string name="day_list_fragment_title">Список за сегодня</string>
+
+    <string name="new_meal_fragment_title">Добавить запись</string>
 </resources>

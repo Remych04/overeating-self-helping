@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.remych04.overeating.self.helping.R
+import com.remych04.overeating.self.helping.base.BaseFragment
 import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class NewMealFragment : Fragment() {
+class NewMealFragment : BaseFragment() {
 
     private var _binding: NewMealFragmentBinding? = null
     private val binding get() = _binding!!
     private val model by viewModel<NewMealViewModel>()
+
+    override fun getViewModel() = model
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +29,7 @@ class NewMealFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setTitle(resources.getString(R.string.new_meal_fragment_title))
         binding.addNewMealButton.setOnClickListener {
             model.addNewMeal(
                 MealDto(

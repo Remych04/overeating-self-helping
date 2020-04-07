@@ -3,6 +3,7 @@ package com.remych04.overeating.self.helping
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
+import com.remych04.overeating.self.helping.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -14,12 +15,13 @@ class MainActivity : AppCompatActivity() {
 
     private val navigatorHolder: NavigatorHolder by inject()
     private val navigator: Navigator = createNavigator()
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         if (savedInstanceState == null) {
             navigator.applyCommands(arrayOf<Command>(Replace(Screens.DayListFragmentScreen())))
         }
@@ -42,5 +44,9 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.executePendingTransactions()
             }
         }
+    }
+
+    fun getToolbar(): MaterialToolbar {
+        return binding.toolbar
     }
 }
