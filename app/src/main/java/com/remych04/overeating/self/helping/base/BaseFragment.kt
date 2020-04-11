@@ -17,8 +17,9 @@ abstract class BaseFragment : Fragment() {
         mainActivity.supportActionBar?.title = title
         mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(isBackButtonEnabled)
         if (isBackButtonEnabled) {
-            mainActivity.getToolbar()
-                .setNavigationOnClickListener { getViewModel().toolbarBackClick() }
+            mainActivity.setToolbarBackAction { getViewModel().toolbarBackClick() }
+        } else {
+            mainActivity.setToolbarBackAction(null)
         }
     }
 

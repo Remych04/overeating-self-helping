@@ -10,6 +10,9 @@ interface MealDao {
     @Query("SELECT * FROM $tableName")
     suspend fun getAllMeals(): List<MealEntity>
 
+    @Query("SELECT * FROM $tableName WHERE date BETWEEN :dayStart and :dayEnd")
+    suspend fun getOneDayMeals(dayStart: Long, dayEnd: Long): List<MealEntity>
+
     @Insert
     suspend fun insertMeal(mealEntity: MealEntity)
 }
