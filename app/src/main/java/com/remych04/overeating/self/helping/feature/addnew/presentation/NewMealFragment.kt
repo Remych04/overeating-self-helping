@@ -11,7 +11,7 @@ import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class NewMealFragment : BaseFragment() {
+class NewMealFragment : BaseFragment(R.layout.daymeallist_fragment) {
 
     private var _binding: NewMealFragmentBinding? = null
     private val binding get() = _binding!!

@@ -2,11 +2,12 @@ package com.remych04.overeating.self.helping.base
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.remych04.overeating.self.helping.MainActivity
 
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment(@LayoutRes layout: Int) : Fragment(layout) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
