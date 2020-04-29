@@ -2,6 +2,9 @@ package com.remych04.overeating.self.helping.feature.daylist.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.R
@@ -9,6 +12,7 @@ import com.remych04.overeating.self.helping.base.BaseFragment
 import com.remych04.overeating.self.helping.base.ext.binding
 import com.remych04.overeating.self.helping.databinding.DaymeallistFragmentBinding
 import com.remych04.overeating.self.helping.feature.daylist.presentation.adapter.MealListAdapter
+import com.remych04.overeating.self.helping.feature.daylist.presentation.listerers.HideShowViewsRecyclerScrollListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
@@ -24,6 +28,7 @@ class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setTitle(resources.getString(R.string.day_list_fragment_title), false)
         initAdapter()
+        initScrollRecycler()
         bind.refreshMealList.setOnRefreshListener {
             model.loadMealList()
         }
@@ -42,7 +47,30 @@ class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
         bind.mealList.adapter = adapter
     }
 
+    private fun initScrollRecycler() {
+        bind.mealList.addOnScrollListener(object : HideShowViewsRecyclerScrollListener() {
+
+            override fun onHide() {
+                val fabButton = bind.addMealButton
+                val bottomMargin =
+                    (fabButton.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin
+                fabButton.animate()
+                    .translationY((fabButton.height + bottomMargin).toFloat())
+                    .setInterpolator(AccelerateInterpolator(2F))
+                    .start();
+            }
+
+            override fun onShow() {
+                bind.addMealButton.animate()
+                    .translationY(0F)
+                    .setInterpolator(DecelerateInterpolator(2F))
+                    .start()
+            }
+        })
+    }
+
     companion object {
         fun getInstance() = DayListFragment()
+
     }
 }

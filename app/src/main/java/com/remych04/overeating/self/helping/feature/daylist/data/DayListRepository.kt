@@ -8,7 +8,7 @@ import java.util.*
 
 class DayListRepository(private val mealDao: MealDao) {
 
-    suspend fun getDayList(): List<MealDto> {
+    suspend fun getAll(): List<MealDto> {
         val mealEntity = mealDao.getAllMeals()
         return mealEntity.map {
             MealDto(
