@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.R
@@ -18,8 +19,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
 
     private val bind by binding { DaymeallistFragmentBinding.bind(this.requireView()) }
-
     private val model by viewModel<DayListViewModel>()
+
     private lateinit var adapter: MealListAdapter
 
     override fun getViewModel() = model
@@ -29,6 +30,9 @@ class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
         setTitle(resources.getString(R.string.day_list_fragment_title), false)
         initAdapter()
         initScrollRecycler()
+
+        //TODO СДЕЛАТЬ НОРМ ДАТУ
+        bind.todayDateText.text = "17 Августа"
         bind.refreshMealList.setOnRefreshListener {
             model.loadMealList()
         }
@@ -39,6 +43,12 @@ class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
             bind.refreshMealList.isRefreshing = false
             adapter.setList(it)
         })
+
+        bind.popupbutton.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), it)
+            popupMenu.inflate(R.menu.popup_menu)
+            popupMenu.show()
+        }
     }
 
     private fun initAdapter() {
@@ -71,6 +81,5 @@ class DayListFragment : BaseFragment(R.layout.daymeallist_fragment) {
 
     companion object {
         fun getInstance() = DayListFragment()
-
     }
 }
