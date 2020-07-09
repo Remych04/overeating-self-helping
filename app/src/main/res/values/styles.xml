@@ -5,8 +5,17 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorAccent">@color/primaryLightColor</item>
     </style>
+
+    <style name="AppOutlinedTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    </style>
+
+    <style name="AppOutlinedTextInputLayoutDense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+    </style>
+
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
     </style>

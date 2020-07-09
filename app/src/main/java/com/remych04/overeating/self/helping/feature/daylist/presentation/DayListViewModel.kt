@@ -23,7 +23,7 @@ class DayListViewModel(
 
     fun loadMealList() {
         viewModelScope.launch {
-            uiData.value = dayListRepository.getTodayList()
+            uiData.value = dayListRepository.getAll()
         }
     }
 

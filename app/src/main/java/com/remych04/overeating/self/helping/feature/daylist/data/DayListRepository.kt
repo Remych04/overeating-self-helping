@@ -1,8 +1,8 @@
 package com.remych04.overeating.self.helping.feature.daylist.data
 
 import com.remych04.overeating.self.helping.base.db.DAY
-import com.remych04.overeating.self.helping.base.db.MealDao
-import com.remych04.overeating.self.helping.base.db.MealEntity
+import com.remych04.overeating.self.helping.base.db.meal.MealDao
+import com.remych04.overeating.self.helping.base.db.meal.MealEntity
 import com.remych04.overeating.self.helping.data.MealDto
 import java.util.*
 
@@ -14,6 +14,7 @@ class DayListRepository(private val mealDao: MealDao) {
             MealDto(
                 it.meal,
                 it.feelings,
+                it.location,
                 it.date,
                 it.unnecessary,
                 it.replacement
@@ -37,6 +38,7 @@ class DayListRepository(private val mealDao: MealDao) {
             MealDto(
                 it.meal,
                 it.feelings,
+                it.location,
                 it.date,
                 it.unnecessary,
                 it.replacement

@@ -8,5 +8,13 @@
         <item>сначала вредные</item>
     </string-array>
 
+
+    <!-- Add new meal screen   -->
     <string name="new_meal_fragment_title">Добавить запись</string>
+    <string name="add_meal_meal_input_hint">Потребленные еда и напитки</string>
+    <string name="add_meal_place_input_hint">Место</string>
+    <string name="add_meal_feelings_input_hint">Мысли и чувства</string>
+    <string name="add_meal_necessity_checkbox_text">Лишнее потребление</string>
+    <string name="add_meal_replacement_checkbox_text">Произведена замена</string>
+    <string name="add_meal_button_add">Добавить запись</string>
 </resources>
