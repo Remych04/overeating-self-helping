@@ -26,7 +26,7 @@ class NewMealViewModel(
 
     fun loadAllLocations() {
         viewModelScope.launch {
-            uiData.value = dayListRepository.getAll().map { it.location }.distinct()
+            uiData.value = dayListRepository.getAllPlaces()
         }
     }
 

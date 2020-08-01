@@ -14,7 +14,7 @@ interface MealDao {
     @Query("SELECT * FROM $mealTableName WHERE date BETWEEN :dayStart and :dayEnd")
     suspend fun getOneDayMeals(dayStart: Long, dayEnd: Long): List<MealEntity>
 
-    @Query("SELECT location FROM $mealTableName")
+    @Query("SELECT DISTINCT location FROM $mealTableName")
     suspend fun getAllLocations(): List<String>
 
     @Insert

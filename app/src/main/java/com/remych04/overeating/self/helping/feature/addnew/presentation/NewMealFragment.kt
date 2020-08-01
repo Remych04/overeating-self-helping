@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
@@ -12,9 +13,11 @@ import com.remych04.overeating.self.helping.base.ext.setToolbarBackNavigation
 import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
 
@@ -33,31 +36,53 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
                 )
             )
         })
-        bind.addNewMealButton.setOnClickListener {
-            //TODO делать проверки заполнености текстовых полей
-            viewModel.addNewMeal(
-                MealDto(
-                    meal = bind.mealEditText.text.toString(),
-                    feelings = bind.feelingsEditText.text.toString(),
-                    location = bind.locationEditText.text.toString(),
-                    date = dateFormat.parse(bind.dateTextView.text.toString()).time,
-                    unnecessary = bind.necessityCheckbox.isChecked,
-                    replacement = bind.replacementCheckbox.isChecked
-                )
+        bind.addNewMealButton.setOnClickListener { addMeal() }
+        bind.datePickerButton.setOnClickListener { showCalendar() }
+    }
+
+    private fun addMeal() {
+        //TODO делать проверки заполнености текстовых полей
+        val parsedDate = LocalDate.parse(bind.dateTextView.text, formatter)
+            .atStartOfDay(ZoneId.systemDefault())
+            .toInstant()
+        viewModel.addNewMeal(
+            MealDto(
+                meal = bind.mealEditText.text.toString(),
+                feelings = bind.feelingsEditText.text.toString(),
+                location = bind.locationEditText.text.toString(),
+                date = parsedDate.toEpochMilli(),
+                unnecessary = bind.necessityCheckbox.isChecked,
+                replacement = bind.replacementCheckbox.isChecked
             )
+        )
+    }
+
+    private fun showCalendar() {
+        val nextDay = LocalDate.now()
+            .plusDays(1)
+            .atStartOfDay(ZoneId.systemDefault())
+            .toInstant()
+        val constraintsBuilder = CalendarConstraints.Builder()
+            .setValidator(MaxDateCalendarValidator(nextDay.toEpochMilli()))
+            .build()
+        val datePicker = MaterialDatePicker.Builder
+            .datePicker()
+            .setCalendarConstraints(constraintsBuilder)
+            .build()
+        datePicker.addOnPositiveButtonClickListener { date ->
+            val selectedDate = LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(date),
+                ZoneId.systemDefault()
+            )
+            val formattedDate = selectedDate.format(formatter)
+            bind.dateTextView.text = formattedDate
         }
-        bind.datePickerButton.setOnClickListener {
-            val datePicker = MaterialDatePicker.Builder.datePicker().build()
-            datePicker.addOnPositiveButtonClickListener { date ->
-                bind.dateTextView.text = dateFormat.format(Date(date))
-            }
-            datePicker.show(parentFragmentManager, datePicker.toString())
-        }
+
+        datePicker.show(parentFragmentManager, datePicker.toString())
     }
 
     companion object {
-        //TODO вынести формат в утилс и для первого раза оставить русскую локаль
-        private val dateFormat = SimpleDateFormat("dd.MMMM.yyyy", Locale.getDefault())
+        private val formatter = DateTimeFormatter.ofPattern("dd.MMMM.yyyy")
         fun getInstance() = NewMealFragment()
     }
 }
