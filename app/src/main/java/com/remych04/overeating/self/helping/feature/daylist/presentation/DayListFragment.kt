@@ -7,6 +7,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
@@ -46,6 +47,12 @@ class DayListFragment : Fragment(R.layout.daymeallist_fragment) {
         adapter = MealListAdapter()
         bind.mealList.layoutManager = LinearLayoutManager(context)
         bind.mealList.adapter = adapter
+        bind.mealList.addItemDecoration(
+            DividerItemDecoration(
+                bind.mealList.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initScrollRecycler() {

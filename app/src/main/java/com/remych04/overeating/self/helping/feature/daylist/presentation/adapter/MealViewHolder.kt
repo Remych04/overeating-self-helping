@@ -9,12 +9,12 @@ class MealViewHolder(private val view: MealItemBinding) : RecyclerView.ViewHolde
     fun bind(item: MealDto) {
         view.mealItem.text = item.meal
         view.feelItem.text = item.feelings
-        view.isUnnecessaryItem.text = if (item.unnecessary) {
+        view.unnecessaryItem.text = if (item.unnecessary) {
             "лишнее"
         } else {
             "Не лишнее"
         }
-        view.isReplacementItem.text = if (item.replacement) {
+        view.replacementItem.text = if (item.replacement) {
             "Заменяемое"
         } else {
             "Не заменяемое"

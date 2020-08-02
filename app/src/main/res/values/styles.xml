@@ -1,11 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryLightColor</item>
+    <style name="Theme.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="appTextColor">@color/grey_2A2A2A</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!--   Typography     -->
+        <item name="mealTextCaption12">@style/TextCaptionRegular12</item>
+        <item name="mealTextBodyRegular14">@style/TextBodyRegular14</item>
+        <item name="mealTextBodyMedium14">@style/TextBodyMedium14</item>
+        <item name="mealTextSubheadingRegular16">@style/TextSubHeadingRegular16</item>
+        <item name="mealTextSubheadingMedium16">@style/TextSubHeadingMedium16</item>
+        <item name="mealTextHeading18">@style/TextHeadingRegular18</item>
+        <item name="mealTextTitleRegular20">@style/TextTitleRegular20</item>
+        <item name="mealTextTitleMedium20">@style/TextTitleMedium20</item>
+        <item name="mealTextHeadlineLight28">@style/TextHeadLineLight28</item>
+
     </style>
 
     <style name="AppOutlinedTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -17,7 +31,6 @@
     </style>
 
 
-    <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
-    </style>
+    <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary"></style>
 
 </resources>

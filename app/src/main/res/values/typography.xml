@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextCaptionRegular12" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextBodyRegular14" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextBodyMedium14" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextSubHeadingRegular16" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextSubHeadingMedium16" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextHeadingRegular18" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextTitleRegular20" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextTitleMedium20" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextHeadLineLight28" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">?attr/appTextColor</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+</resources>

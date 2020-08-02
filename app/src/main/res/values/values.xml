@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Typography    -->
+    <attr name="appTextColor" format="color" />
+    <attr name="mealTextCaption12" format="reference" />
+    <attr name="mealTextBodyRegular14" format="reference" />
+    <attr name="mealTextBodyMedium14" format="reference" />
+    <attr name="mealTextSubheadingRegular16" format="reference" />
+    <attr name="mealTextSubheadingMedium16" format="reference" />
+    <attr name="mealTextHeading18" format="reference" />
+    <attr name="mealTextTitleRegular20" format="reference" />
+    <attr name="mealTextTitleMedium20" format="reference" />
+    <attr name="mealTextHeadlineLight28" format="reference" />
+</resources>
