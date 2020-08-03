@@ -9,15 +9,14 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
+import com.remych04.overeating.self.helping.base.ext.epochToFormattedDate
+import com.remych04.overeating.self.helping.base.ext.formattedDateToEpochMilli
 import com.remych04.overeating.self.helping.base.ext.setToolbarBackNavigation
 import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.Instant
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
 
@@ -42,15 +41,13 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
 
     private fun addMeal() {
         //TODO делать проверки заполнености текстовых полей
-        val parsedDate = LocalDate.parse(bind.dateTextView.text, formatter)
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
+
         viewModel.addNewMeal(
             MealDto(
                 meal = bind.mealEditText.text.toString(),
                 feelings = bind.feelingsEditText.text.toString(),
                 location = bind.locationEditText.text.toString(),
-                date = parsedDate.toEpochMilli(),
+                date = bind.dateTextView.text.formattedDateToEpochMilli(),
                 unnecessary = bind.necessityCheckbox.isChecked,
                 replacement = bind.replacementCheckbox.isChecked
             )
@@ -70,19 +67,13 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
             .setCalendarConstraints(constraintsBuilder)
             .build()
         datePicker.addOnPositiveButtonClickListener { date ->
-            val selectedDate = LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(date),
-                ZoneId.systemDefault()
-            )
-            val formattedDate = selectedDate.format(formatter)
-            bind.dateTextView.text = formattedDate
+            bind.dateTextView.text = date.epochToFormattedDate()
         }
 
         datePicker.show(parentFragmentManager, datePicker.toString())
     }
 
     companion object {
-        private val formatter = DateTimeFormatter.ofPattern("dd.MMMM.yyyy")
         fun getInstance() = NewMealFragment()
     }
 }

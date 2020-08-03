@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingStart="@dimen/left_right_margin"
-    android:paddingEnd="@dimen/left_right_margin">
+    android:paddingTop="4dp"
+    android:paddingEnd="@dimen/left_right_margin"
+    android:paddingBottom="4dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/meal_item"
@@ -28,17 +30,24 @@
         android:layout_height="wrap_content"
         tools:text="20-august-2020" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/unnecessary_item"
-        style="?attr/mealTextCaption12"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Не лишнее" />
+        android:orientation="horizontal">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/replacement_item"
-        style="?attr/mealTextCaption12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Не заменяемое" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/unnecessary_item"
+            style="?attr/mealTextGrayCaption12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Не лишнее" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/replacement_item"
+            style="?attr/mealTextGrayCaption12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            tools:text="Не заменяемое" />
+    </LinearLayout>
 </LinearLayout>

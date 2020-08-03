@@ -3,6 +3,7 @@
     <!--    Typography    -->
     <attr name="appTextColor" format="color" />
     <attr name="mealTextCaption12" format="reference" />
+    <attr name="mealTextGrayCaption12" format="reference" />
     <attr name="mealTextBodyRegular14" format="reference" />
     <attr name="mealTextBodyMedium14" format="reference" />
     <attr name="mealTextSubheadingRegular16" format="reference" />

@@ -5,12 +5,14 @@
 
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
-        <item name="appTextColor">@color/grey_2A2A2A</item>
+        <item name="android:textColorPrimary">@color/grey_2A2A2A</item>
+        <item name="android:textColorSecondary">@color/gray_500</item>
 
         <item name="android:windowLightStatusBar">true</item>
 
         <!--   Typography     -->
         <item name="mealTextCaption12">@style/TextCaptionRegular12</item>
+        <item name="mealTextGrayCaption12">@style/TextCaptionGrayRegular12</item>
         <item name="mealTextBodyRegular14">@style/TextBodyRegular14</item>
         <item name="mealTextBodyMedium14">@style/TextBodyMedium14</item>
         <item name="mealTextSubheadingRegular16">@style/TextSubHeadingRegular16</item>
@@ -29,7 +31,6 @@
     <style name="AppOutlinedTextInputLayoutDense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
     </style>
-
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary"></style>
 
