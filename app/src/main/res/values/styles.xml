@@ -1,35 +1,60 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="Theme.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AppTheme" parent="Base.AppTheme.Builder" />
 
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="android:textColorPrimary">@color/grey_2A2A2A</item>
-        <item name="android:textColorSecondary">@color/gray_500</item>
+    <style name="Base.AppTheme.Builder" parent="Base.Theme.MaterialThemeBuilder">
 
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/green_material_600</item>
+        <item name="colorPrimaryVariant">@color/green_material_800</item>
+        <item name="colorSecondary">@color/purple_material_600</item>
+        <item name="colorSecondaryVariant">@color/purple_material_800</item>
 
-        <!--   Typography     -->
-        <item name="mealTextCaption12">@style/TextCaptionRegular12</item>
-        <item name="mealTextGrayCaption12">@style/TextCaptionGrayRegular12</item>
-        <item name="mealTextBodyRegular14">@style/TextBodyRegular14</item>
-        <item name="mealTextBodyMedium14">@style/TextBodyMedium14</item>
-        <item name="mealTextSubheadingRegular16">@style/TextSubHeadingRegular16</item>
-        <item name="mealTextSubheadingMedium16">@style/TextSubHeadingMedium16</item>
-        <item name="mealTextHeading18">@style/TextHeadingRegular18</item>
-        <item name="mealTextTitleRegular20">@style/TextTitleRegular20</item>
-        <item name="mealTextTitleMedium20">@style/TextTitleMedium20</item>
-        <item name="mealTextHeadlineLight28">@style/TextHeadLineLight28</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorError">@color/red_600</item>
 
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnBackground">@color/black</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MyTheme.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MyTheme.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MyTheme.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MyTheme.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MyTheme.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MyTheme.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MyTheme.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MyTheme.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MyTheme.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MyTheme.Overline</item>
+
+        <!--Component styles-->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert
+        </item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog</item>
+        <item name="navigationViewStyle">@style/Widget.MaterialComponents.NavigationView</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
+
+        <item name="inputTextLayoutOutLine">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="inputTextLayoutOutLineDropDown">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu</item>
+        <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
     </style>
 
-    <style name="AppOutlinedTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-    </style>
-
-    <style name="AppOutlinedTextInputLayoutDense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
+    <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">
+            ?android:attr/colorBackground
+        </item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
+            ?attr/colorControlHighlight
+        </item>
     </style>
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary"></style>

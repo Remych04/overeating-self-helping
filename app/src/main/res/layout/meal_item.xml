@@ -10,44 +10,54 @@
     android:paddingBottom="4dp">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/date_item"
+        style="?attr/textAppearanceCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="20.09.2020" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/meal_item"
-        style="?attr/mealTextTitleMedium20"
+        style="?attr/textAppearanceHeadline6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Овсяная каша" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/place_item"
+        style="?attr/textAppearanceCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Офис" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/feel_item"
-        style="?attr/mealTextSubheadingRegular16"
+        style="?attr/textAppearanceBody2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Отличный завтрак" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/date_item"
-        style="?attr/mealTextCaption12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="20-august-2020" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/unnecessary_item"
-            style="?attr/mealTextGrayCaption12"
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/necessity_checkbox_item"
+            style="?attr/checkboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Не лишнее" />
+            android:enabled="false"
+            android:text="@string/item_necessity" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/replacement_item"
-            style="?attr/mealTextGrayCaption12"
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/replacement_checkbox_item"
+            style="?attr/checkboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            tools:text="Не заменяемое" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="false"
+            android:text="@string/item_replacement" />
     </LinearLayout>
 </LinearLayout>

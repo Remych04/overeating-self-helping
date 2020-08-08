@@ -11,6 +11,7 @@ import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
 import com.remych04.overeating.self.helping.base.ext.epochToFormattedDate
 import com.remych04.overeating.self.helping.base.ext.formattedDateToEpochMilli
+import com.remych04.overeating.self.helping.base.ext.getCurrentTime
 import com.remych04.overeating.self.helping.base.ext.setToolbarBackNavigation
 import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
@@ -26,17 +27,24 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setToolbarBackNavigation(resources.getString(R.string.new_meal_fragment_title), viewModel)
-        viewModel.getData().observe(viewLifecycleOwner, Observer { locationList ->
-            bind.locationEditText.setAdapter(
-                ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_list_item_1,
-                    locationList
-                )
+        viewModel.getData()
+            .observe(
+                viewLifecycleOwner,
+                Observer { locationList -> populateLocations(locationList) }
             )
-        })
+        bind.dateTextView.text = getCurrentTime()
         bind.addNewMealButton.setOnClickListener { addMeal() }
         bind.datePickerButton.setOnClickListener { showCalendar() }
+    }
+
+    private fun populateLocations(locationList: List<String>) {
+        bind.locationEditText.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                locationList
+            )
+        )
     }
 
     private fun addMeal() {

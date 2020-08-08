@@ -12,4 +12,7 @@
     <attr name="mealTextTitleRegular20" format="reference" />
     <attr name="mealTextTitleMedium20" format="reference" />
     <attr name="mealTextHeadlineLight28" format="reference" />
+
+    <attr name="inputTextLayoutOutLine" format="reference" />
+    <attr name="inputTextLayoutOutLineDropDown" format="reference" />
 </resources>

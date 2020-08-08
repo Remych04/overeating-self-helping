@@ -1,5 +1,32 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
+
+    <!--  Primary colors  -->
+    <color name="green_material_600">#7CB342</color>
+    <color name="green_material_800">#558B2F</color>
+
+    <!--  Secondary colors -->
+    <color name="purple_material_600">#8E24AA</color>
+    <color name="purple_material_800">#6A1B9A</color>
+
+    <color name="red_200">#cf6679</color> <!--Color error (dark)-->
+    <color name="red_600">#b00020</color> <!--Color error (light)-->
+
+    <color name="mine_shaft">#2A2A2A</color>
+
+    <!--Neutral Colors-->
+    <color name="black">#000000</color>
+    <color name="gray_950">#141414</color>
+    <color name="gray_900">#212121</color>
+    <color name="gray_800">#292929</color>
+    <color name="gray_700">#303030</color>
+    <color name="gray_600">#404040</color>
+    <color name="gray_500">#6E6E6E</color>
+    <color name="gray_400">#919191</color>
+    <color name="gray_300">#ACACAC</color>
+    <color name="gray_200">#C8C8C8</color>
+    <color name="gray_100">#E1E1E1</color>
+    <color name="gray_50">#F1F1F1</color>
+    <color name="gray_25">#F8F8F8</color>
     <color name="white">#FFFFFF</color>
-    <color name="grey_2A2A2A">#2A2A2A</color>
 </resources>

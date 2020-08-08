@@ -1,12 +1,13 @@
 package com.remych04.overeating.self.helping.base.ext
 
+import androidx.fragment.app.Fragment
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-private val formatter = DateTimeFormatter.ofPattern("dd.mm.yyyy")
+private val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
 fun Long.epochToFormattedDate(): String {
     val localDateTime = LocalDateTime.ofInstant(
@@ -21,4 +22,8 @@ fun CharSequence.formattedDateToEpochMilli(): Long {
         .atStartOfDay(ZoneId.systemDefault())
         .toInstant()
         .toEpochMilli()
+}
+
+fun Fragment.getCurrentTime(): String {
+    return LocalDateTime.now(ZoneId.systemDefault()).format(formatter)
 }

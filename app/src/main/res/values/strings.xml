@@ -16,5 +16,9 @@
     <string name="add_meal_feelings_input_hint">Мысли и чувства</string>
     <string name="add_meal_necessity_checkbox_text">Лишнее потребление</string>
     <string name="add_meal_replacement_checkbox_text">Произведена замена</string>
+    <string name="add_meal_button_change_date">Изменить дату</string>
     <string name="add_meal_button_add">Добавить запись</string>
+
+    <string name="item_necessity">Лишнее</string>
+    <string name="item_replacement">Была замена</string>
 </resources>
