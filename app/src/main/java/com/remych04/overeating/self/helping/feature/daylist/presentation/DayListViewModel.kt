@@ -16,6 +16,7 @@ class DayListViewModel(
 ) : BaseViewModel() {
 
     private val uiData = MutableLiveData<List<MealDto>>()
+    private val deleteItemData = MutableLiveData<Int>()
 
     init {
         loadMealList()
@@ -33,5 +34,26 @@ class DayListViewModel(
 
     fun getData(): LiveData<List<MealDto>> {
         return uiData
+    }
+
+    fun getIsDeleteData(): LiveData<Int> {
+        return deleteItemData
+    }
+
+    fun removeItem(
+        mealItem: MealDto,
+        itemListPosition: Int
+    ) {
+        //TODO сделать подобие MVI с общей моделькой
+        viewModelScope.launch {
+            val isDelete = dayListRepository.removeItem(mealItem)
+            if (isDelete){
+                deleteItemData.value = itemListPosition
+            }
+        }
+    }
+
+    fun changeData(mealItem: MealDto) {
+        router.navigateTo(Screens.NewMealFragmentScreenWithParams(mealItem))
     }
 }

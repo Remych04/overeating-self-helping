@@ -3,6 +3,7 @@ package com.remych04.overeating.self.helping.base.db.meal
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.remych04.overeating.self.helping.base.db.mealTableName
 
 @Dao
@@ -19,4 +20,10 @@ interface MealDao {
 
     @Insert
     suspend fun insertMeal(mealEntity: MealEntity)
+
+    @Query("DELETE FROM $mealTableName WHERE id = :id")
+    suspend fun removeMeal(id: Long)
+
+    @Update
+    suspend fun changeMeal(mealItem: MealEntity)
 }

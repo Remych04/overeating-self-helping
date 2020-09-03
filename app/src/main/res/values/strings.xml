@@ -7,6 +7,10 @@
         <item>по умолчанию</item>
         <item>сначала вредные</item>
     </string-array>
+    <string-array name="item_action_array">
+        <item>Изменить</item>
+        <!--        <item>Удалить</item>-->
+    </string-array>
 
 
     <!-- Add new meal screen   -->
@@ -18,6 +22,9 @@
     <string name="add_meal_replacement_checkbox_text">Произведена замена</string>
     <string name="add_meal_button_change_date">Изменить дату</string>
     <string name="add_meal_button_add">Добавить запись</string>
+    <string name="add_meal_success_snack">Добавлено</string>
+    <string name="add_meal_error_snack">Не удалось. Повторить?</string>
+    <string name="add_meal_repeat_snack">Повторить</string>
 
     <string name="item_necessity">Лишнее</string>
     <string name="item_replacement">Была замена</string>

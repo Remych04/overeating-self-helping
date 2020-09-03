@@ -1,6 +1,7 @@
 package com.remych04.overeating.self.helping
 
 import androidx.fragment.app.Fragment
+import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.feature.addnew.presentation.NewMealFragment
 import com.remych04.overeating.self.helping.feature.calendar.CalendarFragment
 import com.remych04.overeating.self.helping.feature.daylist.presentation.DayListFragment
@@ -19,9 +20,15 @@ sealed class Screens {
         }
     }
 
-    class NewMealFragmentScreen : SupportAppScreen(){
+    class NewMealFragmentScreen : SupportAppScreen() {
         override fun getFragment(): Fragment? {
             return NewMealFragment.getInstance()
+        }
+    }
+
+    class NewMealFragmentScreenWithParams(private val mealItem: MealDto) : SupportAppScreen() {
+        override fun getFragment(): Fragment? {
+            return NewMealFragment.getInstance(mealItem)
         }
     }
 }

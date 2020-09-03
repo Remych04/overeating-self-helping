@@ -1,63 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/left_right_margin"
-    android:paddingTop="4dp"
-    android:paddingEnd="@dimen/left_right_margin"
-    android:paddingBottom="4dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="4dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/date_item"
-        style="?attr/textAppearanceCaption"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="20.09.2020" />
+        android:orientation="vertical">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/meal_item"
-        style="?attr/textAppearanceHeadline6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Овсяная каша" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/meal_item"
+            style="?attr/textAppearanceHeadline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Овсяная каша" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/place_item"
-        style="?attr/textAppearanceCaption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Офис" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dropdown_menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
+            android:src="@drawable/ic_baseline_arrow_drop_down_24"
+            android:background="?attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/meal_item"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/feel_item"
-        style="?attr/textAppearanceBody2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Отличный завтрак" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/place_item"
+            style="?attr/textAppearanceCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/meal_item"
+            tools:text="Офис" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date_item"
+            style="?attr/textAppearanceCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/place_item"
+            app:layout_constraintTop_toBottomOf="@id/meal_item"
+            tools:text="20.09.2020" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/feel_item"
+            style="?attr/textAppearanceBody2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/place_item"
+            tools:text="Отличный завтрак" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/necessity_checkbox_item"
             style="?attr/checkboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
             android:enabled="false"
-            android:text="@string/item_necessity" />
+            android:text="@string/item_necessity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feel_item" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/replacement_checkbox_item"
             style="?attr/checkboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/left_right_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/left_right_margin"
             android:enabled="false"
-            android:text="@string/item_replacement" />
-    </LinearLayout>
-</LinearLayout>
+            android:text="@string/item_replacement"
+            app:layout_constraintStart_toEndOf="@id/necessity_checkbox_item"
+            app:layout_constraintTop_toBottomOf="@id/feel_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

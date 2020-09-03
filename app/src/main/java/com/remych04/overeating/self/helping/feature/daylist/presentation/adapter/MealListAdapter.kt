@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.remych04.overeating.self.helping.data.MealDto
 import com.remych04.overeating.self.helping.databinding.MealItemBinding
 
-class MealListAdapter() : RecyclerView.Adapter<MealViewHolder>() {
+class MealListAdapter(
+    private var clickListener: ((MealDto, SpinnerEvent) -> Unit)? = null
+) : RecyclerView.Adapter<MealViewHolder>() {
 
     private var mealList: List<MealDto>? = null
 
@@ -17,8 +19,8 @@ class MealListAdapter() : RecyclerView.Adapter<MealViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
-        mealList?.let {
-            holder.bind(it[position])
+        mealList?.let { list ->
+            holder.bind(list[position], clickListener)
         }
     }
 

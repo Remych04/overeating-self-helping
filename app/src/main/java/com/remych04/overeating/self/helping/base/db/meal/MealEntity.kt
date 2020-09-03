@@ -7,7 +7,7 @@ import com.remych04.overeating.self.helping.base.db.mealTableName
 @Entity(tableName = mealTableName)
 data class MealEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    val id: Long? = null,
     val meal: String,
     val feelings: String,
     val location: String,
