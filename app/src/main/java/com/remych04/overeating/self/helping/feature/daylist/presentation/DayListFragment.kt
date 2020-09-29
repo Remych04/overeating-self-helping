@@ -45,10 +45,8 @@ class DayListFragment : Fragment(R.layout.daymeallist_fragment) {
 
     private fun initAdapter() {
         adapter = MealListAdapter { mealItem, event ->
-            when (event) {
-                SpinnerEvent.CHANGE -> {
-                    model.changeData(mealItem)
-                }
+            if (event == SpinnerEvent.CHANGE) {
+                model.changeData(mealItem)
             }
         }
         bind.mealList.layoutManager = LinearLayoutManager(context)

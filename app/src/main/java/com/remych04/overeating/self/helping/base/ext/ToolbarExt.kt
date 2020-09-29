@@ -2,9 +2,9 @@ package com.remych04.overeating.self.helping.base.ext
 
 import androidx.fragment.app.Fragment
 import com.remych04.overeating.self.helping.MainActivity
-import com.remych04.overeating.self.helping.base.ToolbarBackNavigation
+import com.remych04.overeating.self.helping.base.BaseViewModel
 
-fun Fragment.setToolbarBackNavigation(title: String, viewModel: ToolbarBackNavigation) {
+fun Fragment.setToolbarBackNavigation(title: String, viewModel: BaseViewModel) {
     with((activity as MainActivity)) {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

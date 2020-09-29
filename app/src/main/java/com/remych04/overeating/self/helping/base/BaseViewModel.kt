@@ -1,9 +1,11 @@
 package com.remych04.overeating.self.helping.base
 
 import androidx.lifecycle.ViewModel
+import ru.terrakok.cicerone.Router
 
-abstract class BaseViewModel : ViewModel(), ToolbarBackNavigation {
+abstract class BaseViewModel(private val router: Router) : ViewModel() {
 
-    override fun toolbarBackClick() {
+    fun toolbarBackClick() {
+        router.exit()
     }
 }
