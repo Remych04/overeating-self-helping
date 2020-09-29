@@ -1,12 +1,9 @@
-package com.remych04.overeating.self.helping.feature.daylist.data
+package com.remych04.overeating.self.helping.data
 
 import com.remych04.overeating.self.helping.base.db.meal.MealDao
 import com.remych04.overeating.self.helping.base.db.meal.MealEntity
-import com.remych04.overeating.self.helping.data.MealDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.time.LocalDate
-import java.time.ZoneId
 
 class DayListRepository(private val mealDao: MealDao) {
 
@@ -15,26 +12,17 @@ class DayListRepository(private val mealDao: MealDao) {
         return@withContext mapMealFromEntity(mealEntityList)
     }
 
-    suspend fun getTodayList(): List<MealDto> = withContext(Dispatchers.IO) {
-        val startOfDay = LocalDate.now()
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-        val nextDay = LocalDate.now()
-            .plusDays(1)
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-        val mealEntity = mealDao.getOneDayMeals(startOfDay, nextDay)
-        return@withContext mapMealFromEntity(mealEntity)
+    suspend fun getDayList(startOfDay: Long, nextDay: Long): List<MealDto> {
+        val mealEntity = mealDao.getOneDayMeals(startOfDay, nextDay - 1)
+        return mapMealFromEntity(mealEntity)
     }
 
-    suspend fun getAllPlaces(): List<String> = withContext(Dispatchers.IO) {
-        return@withContext mealDao.getAllLocations()
+    suspend fun getAllPlaces(): List<String> {
+        return mealDao.getAllLocations()
     }
 
-    suspend fun insertNewMeal(mealItem: MealDto) = withContext(Dispatchers.IO) {
-        return@withContext mealDao.insertMeal(mapDtoToEntity(mealItem))
+    suspend fun insertNewMeal(mealItem: MealDto) {
+        mealDao.insertMeal(mapDtoToEntity(mealItem))
     }
 
     suspend fun removeItem(mealItem: MealDto) = withContext(Dispatchers.IO) {

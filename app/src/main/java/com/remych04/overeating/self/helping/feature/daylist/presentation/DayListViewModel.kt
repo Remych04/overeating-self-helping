@@ -5,8 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.remych04.overeating.self.helping.Screens
 import com.remych04.overeating.self.helping.base.BaseViewModel
+import com.remych04.overeating.self.helping.base.ext.formattedDateToZonedDateTime
+import com.remych04.overeating.self.helping.base.ext.getCurrentTime
+import com.remych04.overeating.self.helping.base.ext.toFormattedDate
+import com.remych04.overeating.self.helping.data.DayListRepository
 import com.remych04.overeating.self.helping.data.MealDto
-import com.remych04.overeating.self.helping.feature.daylist.data.DayListRepository
+import com.remych04.overeating.self.helping.feature.daylist.data.DayListModel
 import kotlinx.coroutines.launch
 import ru.terrakok.cicerone.Router
 
@@ -15,15 +19,18 @@ class DayListViewModel(
     private val router: Router
 ) : BaseViewModel(router) {
 
-    private val uiData = MutableLiveData<List<MealDto>>()
+    private val uiData = MutableLiveData<DayListModel>()
 
     init {
-        loadMealList()
+        loadMealList(getCurrentTime())
     }
 
-    fun loadMealList() {
+    fun loadMealList(formatDate: String) {
         viewModelScope.launch {
-            uiData.value = dayListRepository.getAll()
+            val startDay = formatDate.formattedDateToZonedDateTime()
+            val endDay = startDay.plusDays(1).toInstant().toEpochMilli()
+            val mealList = dayListRepository.getDayList(startDay.toInstant().toEpochMilli(), endDay)
+            uiData.value = DayListModel(mealList, formatDate)
         }
     }
 
@@ -31,11 +38,29 @@ class DayListViewModel(
         router.navigateTo(Screens.NewMealFragmentScreen())
     }
 
-    fun getData(): LiveData<List<MealDto>> {
+    fun getData(): LiveData<DayListModel> {
         return uiData
     }
 
     fun changeData(mealItem: MealDto) {
         router.navigateTo(Screens.NewMealFragmentScreenWithParams(mealItem))
+    }
+
+    fun previousDateClick(formatDate: CharSequence) {
+        viewModelScope.launch {
+            val startDay = formatDate.formattedDateToZonedDateTime().minusDays(1)
+            val endDay = startDay.plusDays(1).toInstant().toEpochMilli()
+            val mealList = dayListRepository.getDayList(startDay.toInstant().toEpochMilli(), endDay)
+            uiData.value = DayListModel(mealList, startDay.toFormattedDate())
+        }
+    }
+
+    fun nextDateClick(formatDate: CharSequence) {
+        viewModelScope.launch {
+            val startDay = formatDate.formattedDateToZonedDateTime().plusDays(1)
+            val endDay = startDay.plusDays(1).toInstant().toEpochMilli()
+            val mealList = dayListRepository.getDayList(startDay.toInstant().toEpochMilli(), endDay)
+            uiData.value = DayListModel(mealList, startDay.toFormattedDate())
+        }
     }
 }

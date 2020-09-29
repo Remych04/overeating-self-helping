@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.remych04.overeating.self.helping.base.BaseViewModel
+import com.remych04.overeating.self.helping.data.DayListRepository
 import com.remych04.overeating.self.helping.data.MealDto
-import com.remych04.overeating.self.helping.feature.daylist.data.DayListRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import ru.terrakok.cicerone.Router

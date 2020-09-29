@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
+import com.remych04.overeating.self.helping.base.ext.getCurrentTime
 import com.remych04.overeating.self.helping.base.ext.setMainToolbar
 import com.remych04.overeating.self.helping.databinding.DaymeallistFragmentBinding
 import com.remych04.overeating.self.helping.feature.daylist.presentation.adapter.MealListAdapter
@@ -29,17 +30,20 @@ class DayListFragment : Fragment(R.layout.daymeallist_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setMainToolbar(resources.getString(R.string.day_list_fragment_title))
         initAdapter()
+        initSliderDateClickListeners()
         initScrollRecycler()
 
+        bind.chosenDate.text = getCurrentTime()
         bind.refreshMealList.setOnRefreshListener {
-            model.loadMealList()
+            model.loadMealList(bind.chosenDate.text.toString())
         }
         bind.addMealButton.setOnClickListener {
             model.addMealClick()
         }
         model.getData().observe(viewLifecycleOwner, Observer {
             bind.refreshMealList.isRefreshing = false
-            adapter?.setList(it)
+            bind.chosenDate.text = it.date
+            adapter?.setList(it.mealList)
         })
     }
 
@@ -51,6 +55,15 @@ class DayListFragment : Fragment(R.layout.daymeallist_fragment) {
         }
         bind.mealList.layoutManager = LinearLayoutManager(context)
         bind.mealList.adapter = adapter
+    }
+
+    private fun initSliderDateClickListeners() {
+        bind.previousDateButton.setOnClickListener {
+            model.previousDateClick(bind.chosenDate.text)
+        }
+        bind.nextDateButton.setOnClickListener {
+            model.nextDateClick(bind.chosenDate.text)
+        }
     }
 
     private fun initScrollRecycler() {
