@@ -30,4 +30,12 @@
     <color name="gray_25">#F8F8F8</color>
     <color name="white">#FFFFFF</color>
 
+    <!-- Personal Colors   -->
+    <color name="c11">#40A471</color>
+    <color name="s11">#008047</color>
+    <color name="y9">#F0F1C6</color>
+    <color name="m9">#C6DA87</color>
+    <color name="dic591">#73FF0D</color>
+    <color name="dic638">#2BFF0D</color>
+
 </resources>

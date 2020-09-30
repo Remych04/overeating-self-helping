@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Overeating-self-helping</string>
 
-    <string name="day_list_fragment_title">Список за сегодня</string>
+    <string name="day_list_fragment_title">Список за день</string>
     <string name="day_list_fragment_today_title">Сегодня</string>
     <string-array name="filters_array">
         <item>по умолчанию</item>

@@ -4,10 +4,10 @@
 
     <style name="Base.AppTheme.Builder" parent="Base.Theme.MaterialThemeBuilder">
 
-        <item name="colorPrimary">@color/green_material_600</item>
-        <item name="colorPrimaryVariant">@color/green_material_800</item>
-        <item name="colorSecondary">@color/purple_material_600</item>
-        <item name="colorSecondaryVariant">@color/purple_material_800</item>
+        <item name="colorPrimary">@color/c11</item>
+        <item name="colorPrimaryVariant">@color/s11</item>
+        <item name="colorSecondary">@color/y9</item>
+        <item name="colorSecondaryVariant">@color/m9</item>
 
         <item name="android:colorBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>

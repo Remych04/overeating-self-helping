@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.binding
-import com.remych04.overeating.self.helping.base.ext.getCurrentTime
 import com.remych04.overeating.self.helping.base.ext.setMainToolbar
 import com.remych04.overeating.self.helping.databinding.DaymeallistFragmentBinding
 import com.remych04.overeating.self.helping.feature.daylist.presentation.adapter.MealListAdapter
@@ -33,7 +32,6 @@ class DayListFragment : Fragment(R.layout.daymeallist_fragment) {
         initSliderDateClickListeners()
         initScrollRecycler()
 
-        bind.chosenDate.text = getCurrentTime()
         bind.refreshMealList.setOnRefreshListener {
             model.loadMealList(bind.chosenDate.text.toString())
         }
