@@ -4,18 +4,16 @@ import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 
-class NavigationComponentModule {
-
-    private val cicerone: Cicerone<Router> = Cicerone.create()
-
-    fun getModule() = module {
-        single { getNavigatorHolder() }
-        single { getRouter() }
-    }
-
-    private fun getNavigatorHolder() = cicerone.navigatorHolder
-
-    private fun getRouter() = cicerone.router
+val navigationModule = module {
+    single { createCicerone() }
+    single { getNavigatorHolder(get()) }
+    single { getRouter(get()) }
 }
+
+private fun createCicerone(): Cicerone<Router> = Cicerone.create()
+
+private fun getNavigatorHolder(cicerone: Cicerone<Router>) = cicerone.navigatorHolder
+
+private fun getRouter(cicerone: Cicerone<Router>) = cicerone.router
 
 
