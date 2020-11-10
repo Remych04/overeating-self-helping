@@ -1,27 +1,37 @@
 package com.remych04.overeating.self.helping.feature.daylist.presentation.adapter
 
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.ListPopupWindow
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.textview.MaterialTextView
 import com.remych04.overeating.self.helping.R
 import com.remych04.overeating.self.helping.base.ext.epochToFormattedDate
 import com.remych04.overeating.self.helping.data.MealDto
-import com.remych04.overeating.self.helping.databinding.MealItemBinding
 
-class MealViewHolder(private val view: MealItemBinding) : RecyclerView.ViewHolder(view.root) {
+class MealViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+
+    private val mealItem = view.findViewById<MaterialTextView>(R.id.meal_item)
+    private val dropdownMenuIcon = view.findViewById<AppCompatImageView>(R.id.dropdown_menu_icon)
+    private val placeItem = view.findViewById<MaterialTextView>(R.id.place_item)
+    private val dateItem = view.findViewById<MaterialTextView>(R.id.date_item)
+    private val feelItem = view.findViewById<MaterialTextView>(R.id.feel_item)
+    private val necessityCheckboxItem = view.findViewById<MaterialCheckBox>(R.id.necessity_checkbox_item)
+    private val replacementCheckboxItem = view.findViewById<MaterialCheckBox>(R.id.replacement_checkbox_item)
 
     fun bind(
         item: MealDto,
         clickListener: ((MealDto, SpinnerEvent) -> Unit)?
     ) {
-        view.dateItem.text = item.date.epochToFormattedDate()
-        view.mealItem.text = item.meal
-        view.placeItem.text = item.location
-        view.feelItem.text = item.feelings
-        view.necessityCheckboxItem.isChecked = item.unnecessary
-        view.replacementCheckboxItem.isChecked = item.replacement
-        initPopupMenu(view.dropdownMenuIcon, item, clickListener)
+        dateItem.text = item.date.epochToFormattedDate()
+        mealItem.text = item.meal
+        placeItem.text = item.location
+        feelItem.text = item.feelings
+        necessityCheckboxItem.isChecked = item.unnecessary
+        replacementCheckboxItem.isChecked = item.replacement
+        initPopupMenu(dropdownMenuIcon, item, clickListener)
     }
 
     private fun initPopupMenu(

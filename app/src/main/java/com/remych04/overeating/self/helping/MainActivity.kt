@@ -2,8 +2,7 @@ package com.remych04.overeating.self.helping
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.remych04.overeating.self.helping.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.appbar.MaterialToolbar
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
@@ -16,13 +15,12 @@ class MainActivity : AppCompatActivity() {
     private val navigatorHolder: NavigatorHolder by inject()
     private val navigator: Navigator = createNavigator()
     private var toolbarBackAction: (() -> Unit)? = null
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setContentView(R.layout.activity_main)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
             navigator.applyCommands(arrayOf<Command>(Replace(Screens.DayListFragmentScreen())))

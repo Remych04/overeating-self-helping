@@ -3,73 +3,94 @@ package com.remych04.overeating.self.helping.feature.addnew.presentation
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textview.MaterialTextView
 import com.remych04.overeating.self.helping.R
-import com.remych04.overeating.self.helping.base.ext.binding
 import com.remych04.overeating.self.helping.base.ext.epochToFormattedDate
 import com.remych04.overeating.self.helping.base.ext.formattedDateToEpochMilli
 import com.remych04.overeating.self.helping.base.ext.getCurrentTime
 import com.remych04.overeating.self.helping.base.ext.setToolbarBackNavigation
 import com.remych04.overeating.self.helping.data.MealDto
-import com.remych04.overeating.self.helping.databinding.NewMealFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.ZoneId
 
 class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
 
-    private val bind by binding { NewMealFragmentBinding.bind(this.requireView()) }
     private val viewModel by viewModel<NewMealViewModel>()
+    private var mealInputLayout: TextInputLayout? = null
+    private var mealEditText: TextInputEditText? = null
+    private var locationEditText: AutoCompleteTextView? = null
+    private var feelingsEditText: TextInputEditText? = null
+    private var dateTextView: MaterialTextView? = null
+    private var necessityCheckbox: MaterialCheckBox? = null
+    private var replacementCheckbox: MaterialCheckBox? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mealInputLayout = view.findViewById<TextInputLayout>(R.id.meal_input_layout)
+        mealEditText = view.findViewById<TextInputEditText>(R.id.meal_edit_text)
+//        val locationInputLayout = view.findViewById<TextInputLayout>(R.id.location_input_layout)
+        locationEditText = view.findViewById<AutoCompleteTextView>(R.id.location_edit_text)
+//        val feelingsInputLayout = view.findViewById<TextInputLayout>(R.id.feelings_input_layout)
+        feelingsEditText = view.findViewById<TextInputEditText>(R.id.feelings_edit_text)
+        val datePickerButton = view.findViewById<MaterialButton>(R.id.date_picker_button)
+        dateTextView = view.findViewById<MaterialTextView>(R.id.date_text_view)
+        necessityCheckbox = view.findViewById<MaterialCheckBox>(R.id.necessity_checkbox)
+        replacementCheckbox = view.findViewById<MaterialCheckBox>(R.id.replacement_checkbox)
+        val addNewMealButton = view.findViewById<MaterialButton>(R.id.add_new_meal_button)
         setToolbarBackNavigation(resources.getString(R.string.new_meal_fragment_title), viewModel)
         viewModel.getLocationsData()
             .observe(
                 viewLifecycleOwner,
-                Observer { locationList -> populateLocations(locationList) }
+                Observer { locationList -> populateLocations(locationList, locationEditText!!) }
             )
         viewModel.getSuccessInsertData()
             .observe(
                 viewLifecycleOwner,
-                Observer { isSuccess -> showAddNewMealResultSnackbar(isSuccess) }
+                Observer { isSuccess -> showAddNewMealResultSnackbar(isSuccess, addNewMealButton) }
             )
-        bind.dateTextView.text = getCurrentTime()
-        bind.addNewMealButton.setOnClickListener {
+        dateTextView!!.text = getCurrentTime()
+        addNewMealButton.setOnClickListener {
             if (arguments != null) {
                 changeMeal()
             } else {
                 addMeal()
             }
         }
-        bind.datePickerButton.setOnClickListener { showCalendar() }
+        datePickerButton.setOnClickListener { showCalendar(dateTextView!!) }
 
         if (arguments != null) {
             val item = arguments?.getSerializable(MEAL_ITEM_KEY) as MealDto
-            bind.mealEditText.setText(item.meal, TextView.BufferType.EDITABLE)
-            bind.feelingsEditText.setText(item.feelings, TextView.BufferType.EDITABLE)
-            bind.locationEditText.setText(item.location, TextView.BufferType.EDITABLE)
-            bind.dateTextView.text = item.date.epochToFormattedDate()
-            bind.necessityCheckbox.isChecked = item.unnecessary
-            bind.replacementCheckbox.isChecked = item.replacement
+            mealEditText?.setText(item.meal, TextView.BufferType.EDITABLE)
+            feelingsEditText?.setText(item.feelings, TextView.BufferType.EDITABLE)
+            locationEditText?.setText(item.location, TextView.BufferType.EDITABLE)
+            dateTextView?.text = item.date.epochToFormattedDate()
+            necessityCheckbox?.isChecked = item.unnecessary
+            replacementCheckbox?.isChecked = item.replacement
         }
     }
 
-    private fun showAddNewMealResultSnackbar(isSuccess: Boolean) {
+    private fun showAddNewMealResultSnackbar(isSuccess: Boolean, addNewMealButton: MaterialButton) {
         if (isSuccess) {
             Snackbar.make(
-                bind.addNewMealButton,
+                addNewMealButton,
                 getString(R.string.add_meal_success_snack),
                 Snackbar.LENGTH_SHORT
             ).show()
         } else {
             Snackbar.make(
-                bind.addNewMealButton,
+                addNewMealButton,
                 getString(R.string.add_meal_error_snack),
                 Snackbar.LENGTH_SHORT
             )
@@ -79,8 +100,8 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
 
     }
 
-    private fun populateLocations(locationList: List<String>) {
-        bind.locationEditText.setAdapter(
+    private fun populateLocations(locationList: List<String>, locationEditText: AutoCompleteTextView) {
+        locationEditText.setAdapter(
             ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_list_item_1,
@@ -98,7 +119,7 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
         viewModel.addNewMeal(createMealDto())
     }
 
-    private fun showCalendar() {
+    private fun showCalendar(dateTextView: MaterialTextView) {
         val nextDay = LocalDate.now()
             .plusDays(1)
             .atStartOfDay(ZoneId.systemDefault())
@@ -111,7 +132,7 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
             .setCalendarConstraints(constraintsBuilder)
             .build()
         datePicker.addOnPositiveButtonClickListener { date ->
-            bind.dateTextView.text = date.epochToFormattedDate()
+            dateTextView.text = date.epochToFormattedDate()
         }
 
         datePicker.show(parentFragmentManager, datePicker.toString())
@@ -121,12 +142,12 @@ class NewMealFragment : Fragment(R.layout.new_meal_fragment) {
         //TODO делать проверки заполнености текстовых полей
         return MealDto(
             id = id,
-            meal = bind.mealEditText.text.toString(),
-            feelings = bind.feelingsEditText.text.toString(),
-            location = bind.locationEditText.text.toString(),
-            date = bind.dateTextView.text.formattedDateToEpochMilli(),
-            unnecessary = bind.necessityCheckbox.isChecked,
-            replacement = bind.replacementCheckbox.isChecked
+            meal = mealEditText?.text.toString(),
+            feelings = feelingsEditText?.text.toString(),
+            location = locationEditText?.text.toString(),
+            date = dateTextView!!.text.formattedDateToEpochMilli(),
+            unnecessary = necessityCheckbox!!.isChecked,
+            replacement = replacementCheckbox!!.isChecked
         )
     }
 
