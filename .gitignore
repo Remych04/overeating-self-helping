@@ -84,4 +84,10 @@ output.json
 # with Android Studio 3.5.
 .cxx/
 
+# Ignore all bazel-* symlinks. There is no full list since this can change
+# based on the name of the directory bazel is cloned into.
+/bazel-*
+# bazel-plugin
+.aswb
+
 # End of https://www.gitignore.io/api/android
